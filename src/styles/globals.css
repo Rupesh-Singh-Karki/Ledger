@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+/* ===== THEME: DARK MODE ===== */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root,
+[data-theme="dark"] {
+  /* Backgrounds */
+  --background: #121212;
+  --card: #1E1E1E;
+  --card-hover: #252525;
+  --sidebar: #161616;
+  --popover: #1E1E1E;
+  --input: #2A2A2A;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.06);
+  --ring: #2DD4BF;
+
+  /* Text */
+  --foreground: #FFFFFF;
+  --muted-foreground: #A0A0A0;
+
+  /* Accent */
+  --primary: #2DD4BF;
+  --primary-foreground: #121212;
+
+  /* Secondary */
+  --secondary: #2A2A2A;
+  --secondary-foreground: #FFFFFF;
+
+  /* Muted */
+  --muted: #2A2A2A;
+
+  /* Accent variant */
+  --accent: #2A2A2A;
+  --accent-foreground: #FFFFFF;
+
+  /* Semantic */
+  --income: #2DD4BF;
+  --expense: #60A5FA;
+  --destructive: #F97316;
+  --destructive-foreground: #FFFFFF;
+
+  /* Chart colors */
+  --chart-1: #2DD4BF;
+  --chart-2: #0D9488;
+  --chart-3: #22D3EE;
+  --chart-4: #06B6D4;
+  --chart-5: #38BDF8;
+
+  /* Shadows */
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* Radius */
+  --radius: 1.5rem;
+
+  color-scheme: dark;
+}
+
+/* ===== THEME: LIGHT MODE ===== */
+[data-theme="light"] {
+  /* Backgrounds */
+  --background: #F5F7F9;
+  --card: #FFFFFF;
+  --card-hover: #F0F2F5;
+  --sidebar: #FFFFFF;
+  --popover: #FFFFFF;
+  --input: #F0F2F5;
+
+  /* Borders */
+  --border: rgba(0, 0, 0, 0.06);
+  --ring: #14B8A6;
+
+  /* Text */
+  --foreground: #111827;
+  --muted-foreground: #6B7280;
+
+  /* Accent */
+  --primary: #14B8A6;
+  --primary-foreground: #FFFFFF;
+
+  /* Secondary */
+  --secondary: #F0F2F5;
+  --secondary-foreground: #111827;
+
+  /* Muted */
+  --muted: #F0F2F5;
+
+  /* Accent variant */
+  --accent: #F0F2F5;
+  --accent-foreground: #111827;
+
+  /* Semantic */
+  --income: #14B8A6;
+  --expense: #3B82F6;
+  --destructive: #EA580C;
+  --destructive-foreground: #FFFFFF;
+
+  /* Chart colors */
+  --chart-1: #14B8A6;
+  --chart-2: #0D9488;
+  --chart-3: #06B6D4;
+  --chart-4: #0EA5E9;
+  --chart-5: #3B82F6;
+
+  /* Shadows */
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.06);
+
+  color-scheme: light;
+}
+
+/* ===== TAILWIND THEME CONFIGURATION ===== */
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-income: var(--income);
+  --color-expense: var(--expense);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-sidebar-foreground: var(--foreground);
+  --color-sidebar-primary: var(--primary);
+  --color-sidebar-primary-foreground: var(--primary-foreground);
+  --color-sidebar-accent: var(--accent);
+  --color-sidebar-accent-foreground: var(--accent-foreground);
+  --color-sidebar-border: var(--border);
+  --color-sidebar-ring: var(--ring);
+}
+
+/* ===== BASE STYLES ===== */
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== GLASSMORPHIC ACCENTS ===== */
+.glass {
+  background: rgba(30, 30, 30, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* ===== AURORA GRADIENT ===== */
+.aurora-gradient {
+  background: radial-gradient(
+    ellipse at 20% 50%,
+    rgba(45, 212, 191, 0.08) 0%,
+    transparent 50%
+  ),
+  radial-gradient(
+    ellipse at 80% 20%,
+    rgba(34, 211, 238, 0.05) 0%,
+    transparent 50%
+  );
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 3px;
+  opacity: 0.3;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  opacity: 0.5;
+}
