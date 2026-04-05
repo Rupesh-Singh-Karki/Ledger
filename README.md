@@ -167,7 +167,7 @@ Default role is Viewer. Switch to Admin using the role dropdown in the header to
 
 - RBAC is frontend-only simulation — not a security mechanism
 - Data resets if localStorage is cleared
-- No real currency conversion — USD only
+- No real time currency conversion — USD only
 - Query parser does not handle typos or complex sentence structures
 
 ---
