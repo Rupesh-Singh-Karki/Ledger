@@ -30,8 +30,9 @@ export function BalanceTrendChart({ data, isLoading }: BalanceTrendChartProps) {
   }
 
   return (
-    <div className="bg-card rounded-3xl p-6 shadow-[var(--shadow)]">
-      <h3 className="text-base font-medium text-foreground mb-6">Balance Trend</h3>
+    <div className="bg-gradient-to-br from-card/80 to-card/30 backdrop-blur-xl border border-border/50 rounded-3xl p-6 shadow-sm transition-all duration-300 hover:shadow-md relative overflow-hidden group">
+      <div className="absolute top-0 left-0 -ml-16 -mt-16 w-48 h-48 bg-income/5 rounded-full blur-3xl group-hover:bg-income/10 transition-colors duration-500 pointer-events-none" />
+      <h3 className="relative z-10 text-base font-medium text-foreground mb-6">Balance Trend</h3>
       <ResponsiveContainer width="100%" height={280}>
         <AreaChart data={data} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
           <defs>

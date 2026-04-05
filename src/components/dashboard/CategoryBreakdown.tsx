@@ -28,8 +28,9 @@ export function CategoryBreakdown({ data, isLoading }: CategoryBreakdownProps) {
   const activeItem = activeIndex !== null ? data[activeIndex] : null;
 
   return (
-    <div className="bg-card rounded-3xl p-6 shadow-[var(--shadow)]">
-      <h3 className="text-base font-medium text-foreground mb-6">Category Breakdown</h3>
+    <div className="bg-gradient-to-br from-card/80 to-card/30 backdrop-blur-xl border border-border/50 rounded-3xl p-6 shadow-sm transition-all duration-300 hover:shadow-md relative overflow-hidden group">
+      <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 bg-income/5 rounded-full blur-3xl group-hover:bg-income/10 transition-colors duration-500 pointer-events-none" />
+      <h3 className="relative z-10 text-base font-medium text-foreground mb-6">Category Breakdown</h3>
       <div className="flex flex-col items-center">
         <div className="relative w-full" style={{ height: 220 }}>
           <ResponsiveContainer width="100%" height="100%">
@@ -82,9 +83,8 @@ export function CategoryBreakdown({ data, isLoading }: CategoryBreakdownProps) {
           {data.slice(0, 6).map((item, index) => (
             <div
               key={item.category}
-              className={`flex items-center gap-2 px-2 py-1 rounded-lg transition-colors duration-150 cursor-default ${
-                activeIndex === index ? 'bg-card-hover' : ''
-              }`}
+              className={`flex items-center gap-2 px-2 py-1 rounded-lg transition-colors duration-150 cursor-default ${activeIndex === index ? 'bg-card-hover' : ''
+                }`}
               onMouseEnter={() => setActiveIndex(index)}
               onMouseLeave={() => setActiveIndex(null)}
             >

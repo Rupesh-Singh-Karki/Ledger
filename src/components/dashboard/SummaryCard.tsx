@@ -14,8 +14,10 @@ export function SummaryCard({ label, value, change, icon, valueColor = 'text-for
   const trendValue = `${change >= 0 ? '+' : ''}${Math.round(Math.abs(change))}% vs last month`;
 
   return (
-    <div className="bg-card rounded-3xl p-6 shadow-[var(--shadow)] hover:bg-card-hover transition-colors duration-200">
-      <div className="flex items-center justify-between mb-4">
+    <div className="bg-gradient-to-br from-card/80 to-card/30 backdrop-blur-xl border border-border/50 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group">
+      {/* Subtle orb effect similar to pro card */}
+      <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-income/5 rounded-full blur-3xl group-hover:bg-income/10 transition-colors duration-500 pointer-events-none" />
+      <div className="relative z-10 flex items-center justify-between mb-4">
         <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
           {label}
         </span>

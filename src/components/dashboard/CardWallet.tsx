@@ -1,6 +1,6 @@
 import { useStore } from '@/store';
 import { formatCurrency } from '@/utils/formatCurrency';
-import { ChevronLeft, ChevronRight, CreditCard, Wifi } from 'lucide-react';
+import { CreditCard, Wifi } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface CardWalletProps {
@@ -36,14 +36,35 @@ function MastercardLogo() {
   );
 }
 
-function CreditCardVisual({ card, isCurrent }: { card: ReturnType<typeof useStore.getState>['cards'][0]; isCurrent: boolean }) {
+function CreditCardVisual({ 
+  card, 
+  index, 
+  activeCardIndex, 
+  totalCards 
+}: { 
+  card: ReturnType<typeof useStore.getState>['cards'][0]; 
+  index: number;
+  activeCardIndex: number;
+  totalCards: number;
+}) {
+  const pos = (index - activeCardIndex + totalCards) % totalCards;
+  const isCurrent = pos === 0;
+
+  const translateY = pos * -16; 
+  const scale = 1 - pos * 0.05; 
+  const opacity = pos < 3 ? 1 - pos * 0.2 : 0; 
+  const zIndex = 50 - pos;
+
   return (
     <div
-      className={`absolute inset-0 rounded-2xl overflow-hidden transition-all duration-500 ${
-        isCurrent ? 'scale-100 opacity-100 z-10' : 'scale-95 opacity-0 z-0'
-      }`}
+      className="absolute inset-0 rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
       style={{
         background: card.gradient,
+        transform: `translateY(${translateY}px) scale(${scale})`,
+        opacity,
+        zIndex,
+        boxShadow: isCurrent ? '0 20px 40px -10px rgba(0,0,0,0.5)' : 'none',
+        transformOrigin: 'bottom center'
       }}
     >
       {/* Glassmorphic overlay */}
@@ -109,10 +130,6 @@ export function CardWallet({ isLoading }: CardWalletProps) {
   const activeCard = cards[activeCardIndex];
   if (!activeCard) return null;
 
-  const handlePrev = () => {
-    setActiveCardIndex(activeCardIndex === 0 ? cards.length - 1 : activeCardIndex - 1);
-  };
-
   const handleNext = () => {
     setActiveCardIndex(activeCardIndex === cards.length - 1 ? 0 : activeCardIndex + 1);
   };
@@ -122,43 +139,33 @@ export function CardWallet({ isLoading }: CardWalletProps) {
     : 0;
 
   return (
-    <div className="bg-card rounded-3xl p-6 shadow-[var(--shadow)] h-full flex flex-col">
-      <div className="flex items-center justify-between mb-6">
+    <div className="bg-gradient-to-br from-card/80 to-card/30 backdrop-blur-xl border border-border/50 rounded-3xl p-6 shadow-sm h-full flex flex-col relative overflow-hidden transition-all duration-300 hover:shadow-md group">
+      <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 bg-income/5 rounded-full blur-3xl group-hover:bg-income/10 transition-colors duration-500 pointer-events-none" />
+      <div className="relative z-10 flex items-center justify-between mb-6">
         <h3 className="text-base font-medium text-foreground">Cards & Wallet</h3>
         <span className="text-xs text-muted-foreground">{cards.length} card{cards.length !== 1 ? 's' : ''}</span>
       </div>
 
       {/* Card display */}
-      <div className="flex-1 flex flex-col items-center justify-center">
+      <div className="flex-1 flex flex-col items-center justify-center pt-2">
         <div className="relative w-full flex justify-center items-center" style={{ minHeight: 200 }}>
-          {/* Left arrow */}
-          <button
-            onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-muted flex items-center justify-center hover:bg-card-hover transition-colors"
-            aria-label="Previous card"
-          >
-            <ChevronLeft className="h-4 w-4 text-foreground" />
-          </button>
-
           {/* Cards stack — centered */}
-          <div className="w-full max-w-[380px] relative" style={{ aspectRatio: '1.6/1' }}>
+          <div 
+            className="w-full max-w-[340px] relative cursor-pointer group hover:scale-[1.02] transition-transform duration-300" 
+            style={{ aspectRatio: '1.6/1' }}
+            onClick={handleNext}
+            title="Click to next card"
+          >
             {cards.map((card, index) => (
               <CreditCardVisual
                 key={card.id}
                 card={card}
-                isCurrent={index === activeCardIndex}
+                index={index}
+                activeCardIndex={activeCardIndex}
+                totalCards={cards.length}
               />
             ))}
           </div>
-
-          {/* Right arrow */}
-          <button
-            onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-muted flex items-center justify-center hover:bg-card-hover transition-colors"
-            aria-label="Next card"
-          >
-            <ChevronRight className="h-4 w-4 text-foreground" />
-          </button>
         </div>
 
         {/* Dot indicators */}

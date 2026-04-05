@@ -18,8 +18,9 @@ export function RecentTransactions({ isLoading }: RecentTransactionsProps) {
 
   if (isLoading) {
     return (
-      <div className="bg-card rounded-3xl p-6 shadow-[var(--shadow)]">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-gradient-to-br from-card/80 to-card/30 backdrop-blur-xl border border-border/50 rounded-3xl p-6 shadow-sm transition-all duration-300 hover:shadow-md relative overflow-hidden group">
+        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 bg-income/5 rounded-full blur-3xl group-hover:bg-income/10 transition-colors duration-500 pointer-events-none" />
+        <div className="relative z-10 flex items-center justify-between mb-4">
           <Skeleton className="h-5 w-40" />
           <Skeleton className="h-4 w-24" />
         </div>
@@ -33,18 +34,20 @@ export function RecentTransactions({ isLoading }: RecentTransactionsProps) {
   }
 
   return (
-    <div className="bg-card rounded-3xl p-6 shadow-[var(--shadow)]">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-base font-medium text-foreground">Recent Transactions</h3>
-        <Link
-          to="/transactions"
-          className="flex items-center gap-1 text-xs text-income hover:text-income/80 transition-colors"
-        >
-          View All <ArrowRight className="h-3 w-3" />
-        </Link>
-      </div>
+    <div className="bg-gradient-to-br from-card/80 to-card/30 backdrop-blur-xl border border-border/50 rounded-3xl p-6 shadow-sm transition-all duration-300 hover:shadow-md relative overflow-hidden group">
+      <div className="absolute top-0 left-0 -ml-16 -mt-16 w-48 h-48 bg-income/5 rounded-full blur-3xl group-hover:bg-income/10 transition-colors duration-500 pointer-events-none" />
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-base font-medium text-foreground">Recent Transactions</h3>
+          <Link
+            to="/transactions"
+            className="flex items-center gap-1 text-xs text-income hover:text-income/80 transition-colors relative z-20"
+          >
+            View All <ArrowRight className="h-3 w-3" />
+          </Link>
+        </div>
 
-      <div className="space-y-1">
+        <div className="space-y-1">
         {recent.map((txn) => (
           <div
             key={txn.id}
@@ -62,6 +65,7 @@ export function RecentTransactions({ isLoading }: RecentTransactionsProps) {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );
