@@ -21,11 +21,11 @@ export function useInsights() {
     } finally {
       setIsLoading(false);
     }
-  }, [transactions]);
+  }, []);
 
   useEffect(() => {
     fetchInsights();
-  }, [fetchInsights]);
+  }, [fetchInsights, transactions]);
 
   return { insights, isLoading, error };
 }

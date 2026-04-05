@@ -29,11 +29,11 @@ export function useDashboardData() {
     } finally {
       setIsLoading(false);
     }
-  }, [transactions]);
+  }, []);
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, [fetchData, transactions]);
 
   return { summary, monthlyTrend, categoryBreakdown, isLoading, error };
 }
