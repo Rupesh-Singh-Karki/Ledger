@@ -41,7 +41,7 @@ export function TransactionCard({ transaction, onEdit, onDelete }: TransactionCa
           <StatusBadge status={transaction.status} />
         </div>
         <p className={`text-base font-semibold ${
-          transaction.type === 'income' ? 'text-income' : 'text-expense'
+          transaction.type === 'income' ? 'text-income' : 'text-negative'
         }`}>
           {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount)}
         </p>

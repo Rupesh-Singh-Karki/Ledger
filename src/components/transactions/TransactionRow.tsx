@@ -45,7 +45,7 @@ export const TransactionRow = React.memo(function TransactionRow({
         </span>
       </td>
       <td className={`py-4 px-4 text-sm font-medium whitespace-nowrap ${
-        transaction.type === 'income' ? 'text-income' : 'text-expense'
+        transaction.type === 'income' ? 'text-income' : 'text-negative'
       }`}>
         {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount)}
       </td>

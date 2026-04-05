@@ -13,6 +13,7 @@ const DEFAULT_FILTERS: TransactionFilters = {
 export const createUISlice: StateCreator<AppStore, [], [], UISlice> = (set) => ({
   role: 'viewer',
   theme: 'dark',
+  currency: 'USD',
   filters: DEFAULT_FILTERS,
 
   setRole: (role) => set({ role }),
@@ -21,6 +22,7 @@ export const createUISlice: StateCreator<AppStore, [], [], UISlice> = (set) => (
     set((state) => ({
       theme: state.theme === 'dark' ? 'light' : 'dark',
     })),
+  setCurrency: (currency) => set({ currency }),
   updateFilters: (updates) =>
     set((state) => ({
       filters: { ...state.filters, ...updates },

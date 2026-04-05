@@ -23,7 +23,7 @@ export function SummaryCard({ label, value, change, icon, valueColor = 'text-for
           {icon}
         </div>
       </div>
-      <p className={`text-3xl font-semibold ${valueColor} mb-2`}>
+      <p className={`text-3xl font-semibold ${value < 0 ? 'text-negative' : valueColor} mb-2`}>
         {formatCurrency(value)}
       </p>
       <TrendIndicator trend={trend} value={trendValue} />

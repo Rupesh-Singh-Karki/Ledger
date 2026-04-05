@@ -71,6 +71,32 @@ export interface RolePermissions {
   setRole: (role: Role) => void;
 }
 
+// ===== CURRENCY =====
+export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'INR' | 'JPY';
+
+export interface CurrencyConfig {
+  code: CurrencyCode;
+  name: string;
+  symbol: string;
+  locale: string;
+  rate: number; // Conversion rate relative to USD (USD = 1)
+}
+
+// ===== CARDS =====
+export interface Card {
+  id: string;
+  cardNumber: string; // Masked: "•••• •••• •••• 4242"
+  cardHolder: string;
+  expiryDate: string; // "MM/YY"
+  type: 'visa' | 'mastercard';
+  variant: 'credit' | 'debit';
+  balance: number; // Current balance in USD
+  creditLimit: number; // Credit limit in USD
+  lastPayment: number; // Last payment amount in USD
+  lastPaymentDate: string; // ISO date
+  gradient: string; // CSS gradient for card background
+}
+
 // ===== STORE =====
 export interface TransactionSlice {
   transactions: Transaction[];
@@ -82,15 +108,23 @@ export interface TransactionSlice {
 export interface UISlice {
   role: Role;
   theme: 'light' | 'dark';
+  currency: CurrencyCode;
   filters: TransactionFilters;
   setRole: (role: Role) => void;
   setTheme: (theme: 'light' | 'dark') => void;
   toggleTheme: () => void;
+  setCurrency: (currency: CurrencyCode) => void;
   updateFilters: (filters: Partial<TransactionFilters>) => void;
   resetFilters: () => void;
 }
 
-export type AppStore = TransactionSlice & UISlice;
+export interface CardSlice {
+  cards: Card[];
+  activeCardIndex: number;
+  setActiveCardIndex: (index: number) => void;
+}
+
+export type AppStore = TransactionSlice & UISlice & CardSlice;
 
 // ===== CATEGORY =====
 export interface CategoryConfig {

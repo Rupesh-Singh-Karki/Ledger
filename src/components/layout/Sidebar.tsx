@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, ArrowLeftRight, Lightbulb } from 'lucide-react';
+import { LayoutDashboard, ArrowLeftRight, Lightbulb, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
@@ -14,11 +14,32 @@ interface SidebarProps {
 
 export function Sidebar({ onLinkClick }: SidebarProps) {
   return (
-    <nav className="flex flex-col gap-1 px-3 py-4" role="navigation" aria-label="Main navigation">
-      {navLinks.map(({ to, label, icon: Icon }) => (
+    <nav className="flex flex-col h-full px-3 py-4" role="navigation" aria-label="Main navigation">
+      <div className="flex flex-col gap-1 flex-1">
+        {navLinks.map(({ to, label, icon: Icon }) => (
+          <NavLink
+            key={to}
+            to={to}
+            onClick={onLinkClick}
+            className={({ isActive }) =>
+              cn(
+                'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-150',
+                isActive
+                  ? 'text-income bg-income/10 border-l-[3px] border-income'
+                  : 'text-muted-foreground hover:bg-card-hover hover:text-foreground'
+              )
+            }
+          >
+            <Icon className="h-5 w-5" />
+            <span>{label}</span>
+          </NavLink>
+        ))}
+      </div>
+
+      {/* Settings at bottom */}
+      <div className="border-t border-border pt-3 mt-3">
         <NavLink
-          key={to}
-          to={to}
+          to="/settings"
           onClick={onLinkClick}
           className={({ isActive }) =>
             cn(
@@ -29,10 +50,10 @@ export function Sidebar({ onLinkClick }: SidebarProps) {
             )
           }
         >
-          <Icon className="h-5 w-5" />
-          <span>{label}</span>
+          <Settings className="h-5 w-5" />
+          <span>Settings</span>
         </NavLink>
-      ))}
+      </div>
     </nav>
   );
 }

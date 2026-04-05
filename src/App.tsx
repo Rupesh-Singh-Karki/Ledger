@@ -6,6 +6,7 @@ import { PageLoader } from '@/components/ui/PageLoader';
 const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
 const TransactionsPage = lazy(() => import('@/pages/TransactionsPage'));
 const InsightsPage = lazy(() => import('@/pages/InsightsPage'));
+const SettingsPage = lazy(() => import('@/pages/SettingsPage'));
 
 export default function App() {
   return (
@@ -33,6 +34,14 @@ export default function App() {
             element={
               <Suspense fallback={<PageLoader />}>
                 <InsightsPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="settings"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <SettingsPage />
               </Suspense>
             }
           />

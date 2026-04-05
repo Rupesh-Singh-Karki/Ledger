@@ -39,6 +39,7 @@
   /* Semantic */
   --income: #2DD4BF;
   --expense: #60A5FA;
+  --negative: #EF4444;
   --destructive: #F97316;
   --destructive-foreground: #FFFFFF;
 
@@ -95,6 +96,7 @@
   /* Semantic */
   --income: #14B8A6;
   --expense: #3B82F6;
+  --negative: #DC2626;
   --destructive: #EA580C;
   --destructive-foreground: #FFFFFF;
 
@@ -137,6 +139,7 @@
   --color-sidebar: var(--sidebar);
   --color-income: var(--income);
   --color-expense: var(--expense);
+  --color-negative: var(--negative);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);

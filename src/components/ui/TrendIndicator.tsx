@@ -8,7 +8,7 @@ interface TrendIndicatorProps {
 
 export function TrendIndicator({ trend, value, className = '' }: TrendIndicatorProps) {
   const Icon = trend === 'up' ? TrendingUp : trend === 'down' ? TrendingDown : Minus;
-  const colorClass = trend === 'up' ? 'text-income' : trend === 'down' ? 'text-muted-foreground' : 'text-muted-foreground';
+  const colorClass = trend === 'up' ? 'text-income' : trend === 'down' ? 'text-negative' : 'text-muted-foreground';
 
   return (
     <div className={`flex items-center gap-1 text-xs font-medium ${colorClass} ${className}`}>

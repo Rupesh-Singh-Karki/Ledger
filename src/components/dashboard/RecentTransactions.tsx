@@ -55,7 +55,7 @@ export function RecentTransactions({ isLoading }: RecentTransactionsProps) {
               <p className="text-xs text-muted-foreground">{formatDate(txn.date)}</p>
             </div>
             <div className="text-right ml-4">
-              <p className={`text-sm font-medium ${txn.type === 'income' ? 'text-income' : 'text-expense'}`}>
+              <p className={`text-sm font-medium ${txn.type === 'income' ? 'text-income' : 'text-negative'}`}>
                 {txn.type === 'income' ? '+' : '-'}{formatCurrency(txn.amount)}
               </p>
               <span className="text-xs text-muted-foreground">{txn.category}</span>
